@@ -1,0 +1,14 @@
+*.keras
+*.h5
+*.hdf5
+*.json
+*.csv
+*.png
+*.jpg
+*.JPG
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+uploads/
+*.ico

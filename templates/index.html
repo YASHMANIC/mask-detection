@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mask Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Mask Detection</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Upload Image</button>
+    </form>
+    {% if result %}
+        <div id="result">
+            <h2>Result:</h2>
+            <p>{{ result }}</p>
+            {% if result_image %}
+            <a href="{{ result_image }}" download>
+                <div style="display: flex; justify-content: center;">
+                    <button type="button" style="
+                        margin-top: 10px;
+                        padding: 10px 24px;
+                        background-color: #4CAF50;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background 0.2s;
+                    " onmouseover="this.style.backgroundColor='#388E3C';" onmouseout="this.style.backgroundColor='#4CAF50';">
+                        Download Image
+                    </button>
+                </div>
+            </a>
+            <img src="{{ result_image }}" alt="Result Image" style="max-width: 500px; margin-top: 20px;"/>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html> 
