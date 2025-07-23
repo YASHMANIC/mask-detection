@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import FileResponse
 from adjust_gamma import adjust_gamma
+from huggingface_hub import hf_hub_download
 import shutil
 import os
 import cv2 
@@ -18,7 +19,11 @@ cvNet = cv2.dnn.readNetFromCaffe("models/deploy.prototxt", "models/weights.caffe
 if cvNet is None:
     raise ValueError("Failed to load the model")
 
-model = tf.keras.models.load_model("models/face_mask_model.keras")
+# Download the model file (e.g., model.h5)
+model_path = hf_hub_download(repo_id="YashManic/face_mask_detection", filename="face_mask_model.keras")
+
+# Load it
+model = tf.keras.models.load_model(model_path)
 if model is None:
     raise ValueError("Failed to load the model")
 
