@@ -4,7 +4,7 @@ opencv-python
 matplotlib
 seaborn
 scikit-learn
-tensorflow
+tensorflow-cpu
 fastapi
 uvicorn
 jinja2
