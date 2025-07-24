@@ -13,6 +13,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 app = FastAPI()
 
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 # Load the model
 cvNet = cv2.dnn.readNetFromCaffe("models/deploy.prototxt", "models/weights.caffemodel")
@@ -34,8 +37,6 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 # Set up templates directory
 templates = Jinja2Templates(directory="templates")
 
-UPLOAD_FOLDER = "uploads"
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
